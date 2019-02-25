@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import uuid from 'uuid';
 import style from './App.css';
 import Title from '../components/Title';
+import TodoForm from '../components/TodoForm';
 import TodoList from '../components/TodoList';
 
 class App extends Component {
@@ -32,9 +33,11 @@ class App extends Component {
 		this.setState({data});
 	}
 
-	removeTodo(id) {
-		const remainder = this.state.data.filter(todo => todo.id !== id);
-		this.setState({data: remainder});
+	removeTodo (id) {
+		//const remainder = this.state.data.filter(todo => todo.id !== id);
+		const remainder = [];
+		this.setState({data: []});
+		console.log(id)
 	}
 
 	howManyTodo () {
@@ -45,13 +48,18 @@ class App extends Component {
 		this.howManyTodo();
 	}
 
+	handleClick(id) {
+    console.log(id.key + 'was clicked.' );
+  }
 	render() {
 		return (
-			<div className={style.TodoApp}>
+			<div className={style.TodoApp} >
 				<Title howMany={this.state.howMany}/>
+				<TodoForm />
 				<TodoList 
 				data={this.state.data}
-				remove={this.removeTodo}/>
+				remove={this.removeTodo}
+				/>
 			</div>
 		);
 	}
