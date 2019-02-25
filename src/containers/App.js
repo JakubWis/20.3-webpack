@@ -2,12 +2,24 @@ import React, { Component } from 'react';
 
 import uuid from 'uuid';
 import style from './App.css';
+import Title from '../components/Title';
+import TodoList from '../components/TodoList';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: []
+			data: [{
+				id: 1,
+				    text: 'clean room'
+				}, {
+				id: 2,
+				    text: 'wash the dishes'
+				}, {
+				id: 3,
+				    text: 'feed my cat'
+			}],
+			howMany: 0
 		};
 	}
 
@@ -25,10 +37,21 @@ class App extends Component {
 		this.setState({data: remainder});
 	}
 
+	howManyTodo () {
+		this.setState({howMany: this.state.data.length})
+	}
+
+	componentDidMount () {
+		this.howManyTodo();
+	}
+
 	render() {
 		return (
 			<div className={style.TodoApp}>
-				Tutaj pojawią się komponenty naszej aplikacji.
+				<Title howMany={this.state.howMany}/>
+				<TodoList 
+				data={this.state.data}
+				remove={this.removeTodo}/>
 			</div>
 		);
 	}
