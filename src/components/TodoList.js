@@ -5,7 +5,6 @@ import Todo from './Todo';
 
 const todoList = (props) => {
 	let tasks = props.data.map(data => {
-		console.log(data.text);
 		return <Todo data={data} key={data.id} remove={props.remove} number={data.id}/>
 	});
 

@@ -20,7 +20,6 @@ class App extends Component {
 				id: 3,
 				    text: 'feed my cat'
 			}],
-			howMany: 0
 		};
 	}
 
@@ -47,14 +46,10 @@ class App extends Component {
 	componentDidMount () {
 		this.howManyTodo();
 	}
-
-	handleClick(id) {
-    console.log(id.key + 'was clicked.' );
-  }
 	render() {
 		return (
 			<div className={style.TodoApp} >
-				<Title howMany={this.state.howMany}/>
+				<Title howMany={this.state.data.length}/>
 				<TodoForm />
 				<TodoList 
 				data={this.state.data}
